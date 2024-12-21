@@ -16,6 +16,9 @@ public class Businfo {
         Map<String, List<String>> timetable1 = new HashMap<>();
         Map<String, List<String>> timetable2 = new HashMap<>();
         
+        String time1 = "C:\\Users\\user\\Desktop\\time1.txt";
+        String time2 = "C:\\Users\\user\\Desktop\\time2.txt";
+        
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
