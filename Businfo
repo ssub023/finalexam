@@ -35,10 +35,16 @@ class BusInfo {
     }
 }
 
-private static void timetable(Scanner scanner, Map<String, List<String>> timetable1, String string) {
-		// TODO Auto-generated method stub
-		
-	}
+private static void timetable(Scanner scanner, Map<String, List<String>> timetable, String departure) {
+    System.out.print("\n몇 시 시간표를 안내할까요? (8시~17시 숫자로만 입력하세요): ");
+    String hour = scanner.nextLine() + "시"; // "시"를 추가하여 키 형식 맞추기
+
+    if (timetable.containsKey(hour)) {
+        System.out.println("[" + departure + "] " + hour + " 시간표: " + timetable.get(hour));
+    } else {
+        System.out.println("해당 시간의 시간표가 없습니다.");
+    }
+}
 
 public class Businfo {
     public static void main(String[] args) {
