@@ -32,6 +32,27 @@ public class Businfo {
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // 버퍼 비우기
+            
+            switch (choice) {
+            case 1:
+                
+                break;
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                
+                break;
+            case 0:
+                System.out.println("프로그램을 종료합니다.");
+                scanner.close();
+                return;
+            default:
+                System.out.println("잘못된 입력입니다.\n");
+        }
 
         }
     }
