@@ -9,6 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+class BusInfo {
+    public static void routes() {
+        System.out.println("\n[운행구간]");
+        System.out.println("정문 -> 생활관: 정문 → 중문 → 보건대학 → 학생회관 → 예술대학 → 생활관");
+        System.out.println("생활관 -> 정문: 생활관 → 예술대학 → 학생회관 → 보건대학 → 중문 → 정문");
+    }
+}
 
 public class Businfo {
     public static void main(String[] args) {
@@ -35,7 +42,7 @@ public class Businfo {
             
             switch (choice) {
             case 1:
-                
+            	BusInfo.routes();
                 break;
             case 2:
                 
