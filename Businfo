@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-class BusInfo {
+class Bus {
     public static void routes() {
         System.out.println("\n[운행구간]");
         System.out.println("정문 -> 생활관: 정문 → 중문 → 보건대학 → 학생회관 → 예술대학 → 생활관");
@@ -51,6 +51,11 @@ class BusInfo {
 		System.out.println("* 교내 셔틀버스는 학기 중에만 운영하며, 학교버스는 학교행사 지원 시 운행이 불가하오니 참고바랍니다.");
         System.out.println("* 무정차 안내 : 08시 ~ 09시 30분까지는 중문, 학생회관은 정차하지 않습니다.\n");
     }
+
+	public static void cancel() {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 public class Businfo {
@@ -81,16 +86,16 @@ public class Businfo {
 
             switch (choice) {
                 case 1:
-                    BusInfo.routes();
+                	Bus.routes();
                     break;
                 case 2:
-                    BusInfo.timetableMenu(scanner, timetable1, timetable2);
+                	Bus.timetableMenu(scanner, timetable1, timetable2);
                     break;
                 case 3:
-                	BusInfo.notice();
+                	Bus.notice();
                     break;
                 case 4:
-                    // 결행 정보 관련 코드 추가
+                    Bus.cancel();
                     break;
                 case 0:
                     System.out.println("프로그램을 종료합니다.");
