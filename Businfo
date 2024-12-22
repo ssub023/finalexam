@@ -16,7 +16,7 @@ class BusInfo {
         System.out.println("생활관 -> 정문: 생활관 → 예술대학 → 학생회관 → 보건대학 → 중문 → 정문");
     }
     public static void timetableMenu(Scanner scanner, Map<String, List<String>> timetable1, Map<String, List<String>> timetable2) {
-        System.out.println("1. 정문 출발");
+        System.out.println("\n1. 정문 출발");
         System.out.println("2. 생활관 출발");
         System.out.print("어느 출발지의 시간표를 보시겠습니까? (1 또는 2를 입력하세요): ");
         int choice = scanner.nextInt();
@@ -39,7 +39,7 @@ private static void timetable(Scanner scanner, Map<String, List<String>> timetab
         String hour = scanner.nextLine() + "시"; // "시"를 추가하여 키 형식 맞추기
 		
         if (timetable.containsKey(hour)) {
-            System.out.println("[" + departure + "] " + hour + " 시간표: " + timetable.get(hour));
+            System.out.println("\n[" + departure + "] " + hour + " 시간표: " + timetable.get(hour));
         } 
         else {
             System.out.println("해당 시간의 시간표가 없습니다.");
