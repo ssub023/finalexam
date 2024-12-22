@@ -1,3 +1,4 @@
+//경로 오류--> 수정하기
 package exam;
 
 import java.io.BufferedReader;
@@ -47,13 +48,14 @@ class Bus {
     }
 
 	public static void notice() {
-		System.out.println("[공지사항");
+		System.out.println("\n[공지사항]");
 		System.out.println("* 교내 셔틀버스는 학기 중에만 운영하며, 학교버스는 학교행사 지원 시 운행이 불가하오니 참고바랍니다.");
         System.out.println("* 무정차 안내 : 08시 ~ 09시 30분까지는 중문, 학생회관은 정차하지 않습니다.\n");
     }
 
 	public static void cancel() {
-		// TODO Auto-generated method stub
+		System.out.println("\n[결행정보]");
+		System.out.println("현재 결행 정보가 없습니다.");
 		
 	}
 }
@@ -64,8 +66,8 @@ public class Businfo {
         Map<String, List<String>> timetable1 = new HashMap<>();
         Map<String, List<String>> timetable2 = new HashMap<>();
         
-        String time1 = "C:\\Users\\user\\Desktop\\time1.txt";
-        String time2 = "C:\\Users\\user\\Desktop\\time2.txt";
+        String time1 = "";
+        String time2 = "";
         
         loadTimetable(time1, timetable1);
         loadTimetable(time2, timetable2);
