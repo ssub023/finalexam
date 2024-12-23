@@ -1,3 +1,4 @@
+// 파일 경로 재설정
 package exam;
 
 import java.io.BufferedReader;
@@ -65,8 +66,9 @@ public class Businfo {
         Map<String, List<String>> timetable1 = new HashMap<>();
         Map<String, List<String>> timetable2 = new HashMap<>();
         
-        String time1 = "C:\\Users\\user\\Desktop\\입출력 파일\\time1.txt";
-        String time2 = "C:\\Users\\user\\Desktop\\입출력 파일\\time2.txt";
+        String time1 = "file/time1.txt"; 
+        String time2 = "file/time2.txt"; 
+
         
         loadTimetable(time1, timetable1);
         loadTimetable(time2, timetable2);
