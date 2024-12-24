@@ -1,0 +1,211 @@
+package exam;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+/**
+ * 버스 관련 정보를 관리하는 클래스입니다.
+ * 
+ * @author Su Bin Yun
+ * @version 1.0
+ * @since 1.0
+ * 
+ * @created 2024-12-19
+ * @lastModified 2024-12-24
+ */
+class Bus {
+    
+    /**
+     * 버스의 운행 구간을 출력합니다.
+     * 
+     * @created 2024-12-19
+     * @lastModified 2024-12-20
+     */
+    public static void routes() {
+        System.out.println("\n[운행구간]");
+        System.out.println("정문 -> 생활관: 정문 → 중문 → 보건대학 → 학생회관 → 예술대학 → 생활관");
+        System.out.println("생활관 -> 정문: 생활관 → 예술대학 → 학생회관 → 보건대학 → 중문 → 정문");
+    }
+
+    /**
+     * 시간표 메뉴를 출력하고 사용자가 선택한 출발지의 시간표를 보여줍니다.
+     * 
+     * @param scanner 사용자 입력을 받기 위한 Scanner 객체
+     * @param timetable1 정문 출발의 시간표 맵
+     * @param timetable2 생활관 출발의 시간표 맵
+     * 
+     * @created 2024-12-19
+     * @lastModified 2024-12-20
+     */
+    public static void timetableMenu(Scanner scanner, Map<String, List<String>> timetable1, Map<String, List<String>> timetable2) {
+        System.out.println("\n1. 정문 출발");
+        System.out.println("2. 생활관 출발");
+        System.out.print("어느 출발지의 시간표를 보시겠습니까? (1 또는 2를 입력하세요): ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // 버퍼 비우기
+        
+        switch (choice) {
+            case 1:
+                timetable(scanner, timetable1, "정문");
+                break;
+            case 2:
+                timetable(scanner, timetable2, "생활관");
+                break;
+            default:
+                System.out.println("잘못된 입력입니다.\n");
+        }
+    }
+
+    /**
+     * 특정 출발지의 시간표를 출력합니다.
+     * 
+     * @param scanner 사용자 입력을 받기 위한 Scanner 객체
+     * @param timetable 시간표를 저장한 맵
+     * @param departure 출발지 이름
+     * 
+     * @created 2024-12-20
+     * @lastModified 2024-12-20
+     */
+    private static void timetable(Scanner scanner, Map<String, List<String>> timetable, String departure) {
+        System.out.print("\n몇 시 시간표를 안내할까요? (8시~17시 숫자로만 입력하세요): ");
+        String hour = scanner.nextLine() + "시"; // "시"를 추가하여 키 형식 맞추기
+		
+        if (timetable.containsKey(hour)) {
+            System.out.println("\n[" + departure + "] " + hour + " 시간표: " + timetable.get(hour));
+        } else {
+            System.out.println("해당 시간의 시간표가 없습니다.");
+        }
+    }
+
+    /**
+     * 공지사항을 출력합니다.
+     * 
+     * @created 2024-12-21
+     * @lastModified 2024-12-22
+     */
+    public static void notice() {
+        System.out.println("\n[공지사항]");
+        System.out.println("* 교내 셔틀버스는 학기 중에만 운영하며, 학교버스는 학교행사 지원 시 운행이 불가하오니 참고바랍니다.");
+        System.out.println("* 무정차 안내 : 08시 ~ 09시 30분까지는 중문, 학생회관은 정차하지 않습니다.\n");
+    }
+
+    /**
+     * 결행 정보를 출력합니다.
+     * 
+     * @created 2024-12-22
+     * @lastModified 2024-12-22
+     */
+    public static void cancel() {
+        System.out.println("\n[결행정보]");
+        System.out.println("현재 결행 정보가 없습니다.");
+    }
+}
+
+/**
+ * 버스 정보를 관리하고 사용자와 상호작용하는 메인 클래스입니다.
+ * 
+ * @author Su Bin Yun
+ * @version 1.0
+ * @since 1.0
+ * 
+ * @created 2024-12-19
+ * @lastModified 2024-12-24
+ */
+public class Businfo {
+    
+    /**
+     * 프로그램의 진입점입니다. 사용자와 상호작용하며 버스 정보를 제공합니다.
+     * 
+     * @param args 명령줄 인수
+     * 
+     * @created 2024-12-19
+     * @lastModified 2024-12-24
+     */
+    public static void main(String[] args) {
+        // 시간표 저장
+        Map<String, List<String>> timetable1 = new HashMap<>();
+        Map<String, List<String>> timetable2 = new HashMap<>();
+        
+        String time1 = "file/time1.txt"; 
+        String time2 = "file/time2.txt"; 
+
+        loadTimetable(time1, timetable1);
+        loadTimetable(time2, timetable2);
+        
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n==== 학교 교내버스 알리미 ====");
+            System.out.println("1. 운행구간");
+            System.out.println("2. 셔틀버스 시간표");
+            System.out.println("3. 공지사항");
+            System.out.println("4. 결행 정보");
+            System.out.println("0. 종료");
+            System.out.print("번호를 입력하세요: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // 버퍼 비우기
+
+            switch (choice) {
+                case 1:
+                    Bus.routes();
+                    break;
+                case 2:
+                    Bus.timetableMenu(scanner, timetable1, timetable2);
+                    break;
+                case 3:
+                    Bus.notice();
+                    break;
+                case 4:
+                    Bus.cancel();
+                    break;
+                case 0:
+                    System.out.println("프로그램을 종료합니다.");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("잘못된 입력입니다.\n");
+            }    
+        }
+    }
+
+    /**
+     * 주어진 파일에서 시간표를 읽어 맵에 저장합니다.
+     * 
+     * @param filename 읽어올 파일의 경로
+     * @param timetable 시간표를 저장할 맵
+     * 
+     * @throws IOException 파일 읽기 중 오류가 발생한 경우
+     * 
+     * @created 2024-12-19
+     * @lastModified 2024-12-23
+     */
+    public static void loadTimetable(String filename, Map<String, List<String>> timetable) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            String hour = null;
+
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("\t")) { // 시간과 배차 구분
+                    String[] parts = line.split("\t");
+                    hour = parts[0];
+                    timetable.put(hour, new ArrayList<>()); // 리스트 저장
+                    
+                    if (parts.length > 1) {
+                        timetable.get(hour).add(parts[1]);
+                    }
+                } else if (!line.isBlank() && hour != null) {
+                    timetable.get(hour).add(line.trim());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("파일을 읽는 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+}
